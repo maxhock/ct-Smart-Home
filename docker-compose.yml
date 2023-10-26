@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   nodered:
-    image: ghcr.io/ct-open-source/ctnodered:latest
+    image: nodered/node-red
     volumes:
       - ./data/nodered:/data
       - /etc/localtime:/etc/localtime
