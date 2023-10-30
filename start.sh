@@ -101,8 +101,8 @@ function build_data_structure {
 }
 
 function check_dependencies {
-	if ! [ -x "$(command -v docker-compose)" ]; then
-		echo '⚠️  Error: docker-compose is not installed.' >&2
+	if ! [ -x "$(command -v docker compose)" ]; then
+		echo '⚠️  Error: docker compose is not installed.' >&2
 		exit 1
 	fi
 
@@ -125,13 +125,13 @@ function start {
 	fi
 
 	echo '🏃 Starting the containers'
-	docker-compose up -d $container
+	docker compose up -d $container
 	echo '⚠️  After you made yourself familiar with the setup, it'"'"'s strongly suggested to secure the services. Read the "Security" section in the README!'
 }
 
 function stop {
 	echo '🛑 Stopping all containers'
-	docker-compose stop
+	docker compose stop
 }
 
 function update {
@@ -142,7 +142,7 @@ function update {
 The automatic update only works with a cloned Git repository.
 Try backing up your settings shutting down all containers with 
 
-docker-compose down --remove orphans
+docker compose down --remove orphans
 
 Then copy the current version from GitHub to this folder and run
 
@@ -152,7 +152,7 @@ Alternatively create a Git clone of the repository."
 		exit 1
 	fi
 	echo '☠️  Shutting down all running containers and removing them.'
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 	if [ ! $? -eq 0 ]; then
 		echo '⚠️  Updating failed. Please check the repository on GitHub.'
 	fi	    
@@ -164,7 +164,7 @@ Alternatively create a Git clone of the repository."
 		echo '⚠️  Updating failed. Please check the repository on GitHub.'
 	fi	    
 	echo '⬇️  Pulling docker images.'
-	docker-compose pull
+	docker compose pull
 	if [ ! $? -eq 0 ]; then
 		echo '⚠️  Updating failed. Please check the repository on GitHub.'
 	fi	    
